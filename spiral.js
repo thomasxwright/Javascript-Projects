@@ -1,79 +1,25 @@
 function spiralize (n) {
-  
-  let spiral = new Grid(n)
-  
-  
-  
-}
+      let grid = Array.from(Array(n), () => Array(n).fill(1))
 
-
-class Grid {
-  constructor (size) {
-    this._size = size
-    this._grid = new Array(size).fill(Array(size).fill(0))
-    this._direction = 'r'
-    this._row = 1
-    this._column = 0
-  }
-  
-  get size() {
-    return this._size
-  }
-  get row() {
-    return this._row
-  }
-  get column() {
-    return this._column
-  }
-  get grid() {
-    return this._grid
-  }
-  get direction() {
-    return this._direction
-  }
-  
-  nextCellInThisDirection(row, column) {
-    switch (this._direction) {
-        case 'r':
-         if (column === this._size - 1)
-           return null
-         return [row, column + 1]
-        case 'd':
-         if (row === this._size - 1)
-           return null
-         return [row + 1, column]
-        case 'l':
-         if (column === 0)
-           return null
-         return [row, column - 1]
-        case 'u':
-         if (row === 0)
-           return null
-         return [row - 1, column]
+      //we mark it one "layer" at a time, each layer is 2 rows
+      for (let depth = 0; depth < n / 2; depth+= 2) {
+        
+        //Mark the top of a spiral
+        for (let i = depth; i < n - depth - 1; i++) {
+          grid[depth+1][i] = 0
+        }
+        //Right of the spiral
+        for (let i = depth + 2; i < n - depth - 1; i++) {
+          grid[i][n - depth - 2] = 0
+        }
+        //Bottom of the spiral
+        for (let i = n - depth - 3; i > depth; i--) {
+          grid[n - depth - 2][i] = 0
+        }
+        //Left side of the spiral
+        for (let i = n - depth - 3; i > depth + 2; i--) {
+          grid[i][depth + 1] = 0
+        }
     }
+    return grid
   }
-  
-  updateDirection() {
-    
-    let next1 = nextCellInThisDirection(this._row, this._column)
-    let [nextRow2, nextColumn2] = next1 && nextCellInThisDirection(nextRow1, nextColumn1)
-    switch (this._direction) {
-        case 'r':
-         if (this._column === this._size - 2 || this._grid[this._row][this.column + 1] === 0 && this._grid[this._row][this.column + 2] === 1)
-           this._direction = 'd'
-        break
-        case 'd':
-         if (this._row === this._size - 2 || this._grid[this._row + 1][this.column] === 0 && this._grid[this._row + 2][this.column] === 1)
-           this._direction = 'l'
-        break
-        case 'l':
-         if (this._column === 1 || this._grid[this._row][this.column - 1] === 0 && this._grid[this._row][this.column - 2] === 1)
-           this._direction = 'u'
-        break
-        case 'u':
-         if (this._row === 1 || this._grid[this._row - 1][this.column] === 0 && this._grid[this._row - 2][this.column] === 1)
-           this._direction = 'r'
-        break
-    }
-  }
-}
