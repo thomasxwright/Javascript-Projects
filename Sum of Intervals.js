@@ -17,3 +17,16 @@ function sumIntervals(intervals) {
 }
 
 // https://www.codewars.com/kata/52b7ed099cdc285c300001cd
+
+
+
+
+/*
+cool alt solution by somebody:
+function sumIntervals(intervals) {
+  return intervals.sort(([a, b], [c, d]) => a - c).reduce(
+    ([sum, r], [x, y]) => 
+      x >= r ? [sum + y - x, y] : 
+      y >= r ? [sum + y - r, y] : [sum, r], [0, -Infinity])[0]
+}
+*/
