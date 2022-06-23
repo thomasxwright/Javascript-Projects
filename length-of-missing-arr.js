@@ -1,6 +1,7 @@
 function getLengthOfMissingArray(arrayOfArrays) {
+  if (!arrayOfArrays || arrayOfArrays.length === 0) return 0
   const containsNullOrEmptyArr = !arrayOfArrays.every(arr => arr != null && arr.length > 0)
-  if (!arrayOfArrays || arrayOfArrays.length === 0 || containsNullOrEmptyArr) return 0
+  if (containsNullOrEmptyArr) return 0
   
   arrayOfArrays.sort((a, b) => a.length - b.length)
   const sequence = arrayOfArrays.map(arr => arr.length)
