@@ -1,14 +1,14 @@
 function jewelCount (jewels, stones) {
-	  let tally = {}
-	for (const stone of stones) {
-		tally[stone] = tally[stone] + 1 || 1
+	  let exists = {}
+	for (const jewel of jewels) {
+		exists[jewel] = true
 	}
 
 
 	let jewelCount = 0
-	for (const jewel of jewels) {
-		if (tally[jewel]) {
-			jewelCount += tally[jewel]
+	for (const stone of stones) {
+		if (exists[stone]) {
+			jewelCount ++
 		}
 	}
 	return jewelCount
