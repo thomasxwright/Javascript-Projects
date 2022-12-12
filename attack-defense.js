@@ -1,6 +1,7 @@
 
 n hasSurvived(attackers, defenders){
 	  const sharedSize = Math.min(attackers.length, defenders.length)
+	// if attackersScore is positive, attackers win.
 	  let attackersScore = 0
 	  for (let i = 0; i < sharedSize; i++) {
 		      if (attackers[i] > defenders[i])
