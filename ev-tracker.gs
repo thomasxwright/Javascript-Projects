@@ -1,6 +1,6 @@
 var sheet = SpreadsheetApp.getActiveSheet();
 
-function onEddit(e) {
+function onEdit(e) {
   for (let i = 1; i < 300; i++) {
     let cell = sheet.getRange(i, 1).getValue()
     if (cell.includes("Nature")) {
